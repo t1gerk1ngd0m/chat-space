@@ -2,8 +2,8 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|name|varchar(255)|null: false|
-|email|varchar(255)|null: false|
+|name|string|null: false|
+|email|string|null: false|
 
 ### Association
 - has_many :messages
@@ -15,8 +15,8 @@
 |------|----|-------|
 |user_id|references|null: false, foreign_key: true|
 |group_id|references|null: false, foreign_key: true|
-|body|varchar(255)||
-|image|varchar(255)||
+|body|string||
+|image|string||
 
 ### Association
 - belongs_to :group
@@ -37,7 +37,7 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|title|varchar(255)|null: false|
+|title|string|null: false|
 
 ### Association
 - has_many :messsages
