@@ -1,4 +1,4 @@
 <div class="wrapper">
   <%= render 'devise/shared/side_bar' %>
-  <%= render :partial => "chat" %>
+  <%= render :partial => "chat", :locals => { group: @group }   %>
 </div>
