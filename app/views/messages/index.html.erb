@@ -4,7 +4,7 @@
     <div class="header">
       <div class="left-header">
         <div class="left-header__title">
-          sampleグループ
+          <%= @group.name %>
         </div>
         <ul class="left-header__members">
           Member：
@@ -19,7 +19,7 @@
       <%= render partial: 'message', collection: @messages %>
     </div>
     <div class="form">
-      <%= form_for [@group, @message] do |f| %>
+      <%= form_for [@group, @message], html: {id: "new_message"} do |f| %>
         <%= f.text_field :content, class: 'form__messsage', placeholder: 'type a message' %>
         <div class="form__mask">
           <%= f.label :image, class: 'form__mask__image' do %>
