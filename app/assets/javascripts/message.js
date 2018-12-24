@@ -34,6 +34,8 @@ $(function(){
     e.preventDefault();
     var formData = new FormData(this);
 
+    $('.form__submit').removeAttr('data-disable-with')
+
     var url = $(this).attr('action');
     $.ajax({
       url: url,
@@ -47,9 +49,8 @@ $(function(){
     .done(function(data){
       var html = buildHTML(data);
       $('.messages').append(html)
-      $('.messages').animate({
-        'height': '300px'
-      })
+      $('.form__messsage').val('')
+      $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight});
     })
     .fail(function(){
       alert('error');

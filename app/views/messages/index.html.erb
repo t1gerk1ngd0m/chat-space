@@ -27,7 +27,7 @@
             <%= f.file_field :image, class: 'hidden' %>
           <% end %>
         </div>
-        <%= f.submit 'Send', class: 'form__submit' %>
+        <%= f.submit 'Send', "data-disable-with": "送信中...", class: 'form__submit' %>
       <% end %>
     </div>
   </div>
