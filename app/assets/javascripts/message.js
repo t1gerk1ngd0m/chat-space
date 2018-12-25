@@ -1,6 +1,5 @@
 $(function(){
   function buildHTML(message){
-    console.log(message);
     if(message.content != null){
       message_content = `<p class="lower-message__content">
                           ${message.content}
