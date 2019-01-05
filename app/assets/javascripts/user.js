@@ -18,6 +18,17 @@ $(function(){
     search_list.append(html);
   }
 
+  var member_list = $('#chat-group-users');
+
+  function addUserToGroup(user_id, name) {
+    var add_user = `<div class='chat-group-user clearfix js-chat-member' id='chat-group-user-8'>
+                      <input name='group[user_ids][]' type='hidden' value="${ user_id }">
+                      <p class='chat-group-user__name'>${ name }</p>
+                      <a class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn'>削除</a>
+                    </div>`
+    member_list.append(add_user);
+  }
+
   $('#user-search-field').on('keyup', function(){
     var input = $('#user-search-field').val();
 
@@ -43,5 +54,17 @@ $(function(){
     .fail(function() {
       alert('ユーザー検索に失敗しました');
     })
+  });
+
+  $(document).on("click", ".user-search-add", function(){
+    var user_id = $(this).data("user-id");
+    var name = $(this).data("user-name");
+    console.log(this);
+    addUserToGroup(user_id, name);
+    $(this).parent().remove();
+  });
+
+  $(document).on("click", ".user-search-remove", function(){
+    $(this).parent().remove();
   });
 });
