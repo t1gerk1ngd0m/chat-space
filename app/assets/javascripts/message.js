@@ -12,7 +12,7 @@ $(function(){
     } else {
       message_image = ""
     }
-    var html = `<div class="message">
+    var html = `<div class="message" data-message-id="${ message.id }">
                   <div class="upper-message">
                     <div class="upper-message__user-name">
                       ${message.user_name}
@@ -55,4 +55,31 @@ $(function(){
       alert('error');
     })
   })
+
+  setInterval(function() {
+
+    var last_message = $('.message').last().data('message-id');
+
+    if (window.location.href.match(/\/groups\/\d+\/messages/)) {
+      $.ajax({
+        url: location.href,
+        type: "GET",
+        data: { id: last_message },
+        dataType: 'json'
+      })
+      .done(function(data) {
+        var insertHTML = '';
+        data.forEach(function(message) {
+          insertHTML += buildHTML(message);
+        });
+        $('.messages').append(insertHTML);
+        $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight});
+      })
+      .fail(function(data) {
+        alert('自動更新に失敗しました');
+      })
+    } else {
+      clearInterval(interval);
+    }
+  } , 5000 );
 });
