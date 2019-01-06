@@ -55,4 +55,31 @@ $(function(){
       alert('error');
     })
   })
+
+  setInterval(function() {
+    if (window.location.href.match(/\/groups\/\d+\/messages/)) {
+      $.ajax({
+        url: location.href,
+        type: "GET",
+        dataType: 'json'
+      })
+      .done(function(data) {
+        var id = $('.message').data("message-id");
+        var insertHTML = '';
+        data.messages.forEach(function(message) {
+          if (message.id > id ) {
+            insertHTML += buildHTML(message);
+          }
+        });
+        $('.messages').append(insertHTML);
+        $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight});
+      })
+      .fail(function(data) {
+        debugger;
+        alert('自動更新に失敗しました');
+      })
+    } else {
+      clearInterval(interval);
+    }
+  } , 5000 );
 });
