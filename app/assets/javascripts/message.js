@@ -12,7 +12,7 @@ $(function(){
     } else {
       message_image = ""
     }
-    var html = `<div class="message">
+    var html = `<div class="message" data-message-id="${ message.id }">
                   <div class="upper-message">
                     <div class="upper-message__user-name">
                       ${message.user_name}
@@ -57,19 +57,20 @@ $(function(){
   })
 
   setInterval(function() {
+
+    var last_message = $('.message').last().data('message-id');
+
     if (window.location.href.match(/\/groups\/\d+\/messages/)) {
       $.ajax({
         url: location.href,
         type: "GET",
+        data: { id: last_message },
         dataType: 'json'
       })
       .done(function(data) {
-        var id = $('.message').data("message-id");
         var insertHTML = '';
-        data.messages.forEach(function(message) {
-          if (message.id > id ) {
-            insertHTML += buildHTML(message);
-          }
+        data.forEach(function(message) {
+          insertHTML += buildHTML(message);
         });
         $('.messages').append(insertHTML);
         $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight});
