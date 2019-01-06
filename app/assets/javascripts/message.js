@@ -76,7 +76,6 @@ $(function(){
         $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight});
       })
       .fail(function(data) {
-        debugger;
         alert('自動更新に失敗しました');
       })
     } else {
