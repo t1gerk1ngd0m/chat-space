@@ -56,7 +56,7 @@ $(function(){
     })
   })
 
-  setInterval(function() {
+  var interval = setInterval(function() {
 
     var last_message = $('.message').last().data('message-id');
 
@@ -68,16 +68,16 @@ $(function(){
         dataType: 'json'
       })
       .done(function(data) {
-        var insertHTML = '';
+        console.log(data)
         data.forEach(function(message) {
-          insertHTML += buildHTML(message);
+          $('.messages').append(buildHTML(message));
         });
-        $('.messages').append(insertHTML);
-        $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight});
+
       })
       .fail(function(data) {
         alert('自動更新に失敗しました');
       })
+      console.log();
     } else {
       clearInterval(interval);
     }

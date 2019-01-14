@@ -2,6 +2,7 @@ class MessagesController < ApplicationController
   before_action :set_group
 
   def index
+    @members = @group.users.pluck(:name).join(',')
     @message = Message.new
     @messages = @group.messages.includes(:user)
     respond_to do |format|
@@ -32,6 +33,6 @@ class MessagesController < ApplicationController
   end
 
   def set_group
-    @group = Group.find_by(params[:group_id])
+    @group = Group.find(params[:group_id])
   end
 end

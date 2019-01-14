@@ -8,11 +8,13 @@
         </div>
         <ul class="left-header__members">
           Member：
-          <li class="member">taiga</li>
+          <li class="member"><%= @members %></li>
         </ul>
       </div>
       <div class="right-header">
-        <a class="right-header__button" href="">Edit</a>
+        <%= link_to edit_group_path(@group) do %>
+          <div class="right-header__button">Edit</div>
+        <% end %>
       </div>
     </div>
     <div class="messages">
