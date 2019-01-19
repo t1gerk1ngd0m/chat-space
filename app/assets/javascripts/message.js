@@ -47,6 +47,7 @@ $(function(){
 
     .done(function(data){
       var html = buildHTML(data);
+      console.log(data)
       $('.messages').append(html)
       $('.form__messsage').val('')
       $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight});
@@ -68,7 +69,6 @@ $(function(){
         dataType: 'json'
       })
       .done(function(data) {
-        console.log(data)
         data.forEach(function(message) {
           $('.messages').append(buildHTML(message));
         });
