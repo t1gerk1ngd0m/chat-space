@@ -19,6 +19,7 @@ Layout/AlignParameters:
   Exclude:
     - 'spec/controllers/messages_controller_spec.rb'
 
+
 # Offense count: 15
 # Cop supports --auto-correct.
 Layout/EmptyLines:
